@@ -4,7 +4,7 @@ Hello, here is things.
 
 ## Image 1: Stuff
 
-![ImaggeeexddD](/api/placeholder/800/600)
+![ImaggeeexddD](../outputs/emir_output.jpg)
 
 This is something.
 
