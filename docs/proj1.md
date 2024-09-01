@@ -33,7 +33,18 @@ As a part of the extra bells and whistles, we can add cropping. For cropping, th
 ![Image](../crops/self_portrait_output.jpg)
 ![Image](../with_crops/self_portrait_output.jpg)
 
-In these exampls, we can see some of the black borders as well as some of the colored borders being chopped off. Our approach is relatilvely considervative in terms of the method and threshold.
+In these exampls, we can see some of the black and white borders as well as some of the colored borders being chopped off. Our approach is relatilvely considervative in terms of the method and threshold.
+
+## Section 3: Edge-Based Alignment
+
+This section concerns only one image in particular, that being of emir.tif, as it is the only one notably impacted by this change, besides maybe the train. In order to explain why this is the case, we must explain the original implementation. Before, we made use of normalized-cross-correlation, which worked as a suitable measure as it managed relative differences better than other ones like l2 or l2 distance. This however caused a problem because the man's outfit was very blue in this picture, and thus there is a huge area in the slide with a mass of lagre values for the blue layer, and none for the red. Therefore the program would be way off, as it would try to align his outfit with the door, which has small amounts of red on it. To fix this problem, we can make use of an edge detection kernel and a convolution. Here we take both a vertical and horizontal edge detector kernel, sum the output, and then run the alignment function on that. We see a massive improvement in emir. Moreover this made some improvments on train, as this image would have trouble on smaller pyramids prior to this adjustment.
+
+![Image](../without_edge/emir.jpg)
+![Image](../with_edge/emir.jpg)
+
+![Image](../without_edge/train.jpg)
+![Image](../with_edge/train.jpg)
+
 
 ---
 
