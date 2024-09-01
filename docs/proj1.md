@@ -48,22 +48,22 @@ This section concerns only one image in particular, that being of emir.tif, as i
 This one is a purley aesthetic change, and so viewer is the judge as to if it is preferable or not. Here we convert the image to YcrCb and use the value of Y as out measure of contrast. We then linearly scale all values accordingly and then convert back. We see overall this has the effect of making things darker and moodier.
 
 ![Image](../with_lum/melons_output.jpg)
-![Image](../with_edge_/melons_output.jpg)
+![Image](../with_edge/melons_output.jpg)
 
 ![Image](../with_lum/emir_output.jpg)
-![Image](../with_edge_/emir_output.jpg)
+![Image](../with_edge/emir_output.jpg)
 
 ![Image](../with_lum/harvesters_output.jpg)
-![Image](../with_edge_/harvesters_output.jpg)
+![Image](../with_edge/harvesters_output.jpg)
 
 ![Image](../with_lum/icon_output.jpg)
-![Image](../with_edge_/icon_output.jpg)
+![Image](../with_edge/icon_output.jpg)
 
 ![Image](../with_lum/lady_output.jpg)
-![Image](../with_edge_/lady_output.jpg)
+![Image](../with_edge/lady_output.jpg)
 
 ![Image](../with_lum/train_output.jpg)
-![Image](../with_edge_/train_output.jpg)
+![Image](../with_edge/train_output.jpg)
 
 ---
 
