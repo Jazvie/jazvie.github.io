@@ -1,3 +1,5 @@
+layout: default
+
 # Project 1
 
 Hello, here is things.
