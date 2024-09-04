@@ -6,29 +6,45 @@
     <title>Project 1</title>
     <style>
         body {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    }
         img {
-            max-width: 50%;
+            max-width: 100%; /* Ensures images never exceed their container */
             height: auto;
             display: block;
             margin: 20px auto;
         }
+
         .image-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
+
         .image-container img {
             flex: 0 1 calc(25% - 10px);
             margin: 5px;
+            object-fit: cover; /* Maintains aspect ratio while filling the space */
         }
+
+        @media (max-width: 800px) {
+            .image-container img {
+                flex: 0 1 calc(33.333% - 10px);
+            }
+        }
+
         @media (max-width: 600px) {
             .image-container img {
                 flex: 0 1 calc(50% - 10px);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .image-container img {
+                flex: 0 1 100%;
             }
         }
     </style>
@@ -46,7 +62,6 @@
     <div class="image-container">
         <img src="./media/outputs/cathedral_output.jpg" alt="Cathedral output">
         <img src="./media/outputs/tobolsk_output.jpg" alt="Tobolsk output">
-        <img src="./media/outputs/monastery_output.jpg" alt="Monastery output">
     </div>
 
     <h2>Section 2: Large tif Images</h2>
@@ -60,6 +75,7 @@
         <img src="./media/outputs/harvesters_output.jpg" alt="Harvesters output">
         <img src="./media/outputs/lady_output.jpg" alt="Lady output">
         <img src="./media/outputs/melons_output.jpg" alt="Melons output">
+        <img src="./media/outputs/monastery_output.jpg" alt="Monastery output">
         <img src="./media/outputs/onion_church_output.jpg" alt="Onion church output">
         <img src="./media/outputs/sculpture_output.jpg" alt="Sculpture output">
         <img src="./media/outputs/self_portrait_output.jpg" alt="Self portrait output">
@@ -83,7 +99,7 @@
 
     <h2>Section 4: Edge-Based Alignment</h2>
 
-    <p>This section concerns only one image in particular, that being of emir.tif, as it is the only one notably impacted by this change, besides maybe the train. In order to explain why this is the case, we must explain the original implementation. Before, we made use of normalized-cross-correlation, which worked as a suitable measure as it managed relative differences better than other ones like l1 or l2 distance. This however caused a problem because the man's outfit was very blue in this picture, and thus there is a huge area in the slide with a mass of large values for the blue layer, and none for the red. Therefore the program would be way off, as it would try to align his outfit with the door or his beard, which have more red and green. To fix this problem, we can make use of an edge detection kernel and a convolution. Here we take both a vertical and horizontal edge detector kernel, sum the output, and then run the alignment function on that. We see a massive improvement in emir. Moreover this made some improvements on train, as this image would have trouble on smaller pyramids prior to this adjustment.</p>
+    <p>This section concerns only one image in particular, that being of emir.tif, as it is the only one notably impacted by this change, besides maybe the train. In order to explain why this is the case, we must explain the original implementation. Before, we made use of normalized-cross-correlation, which worked as a suitable measure as it managed relative differences better than other ones like l2 or l2 distance. This however caused a problem because the man's outfit was very blue in this picture, and thus there is a huge area in the slide with a mass of large values for the blue layer, and none for the red. Therefore the program would be way off, as it would try to align his outfit with the door or his beard, which have more red and green. To fix this problem, we can make use of an edge detection kernel and a convolution. Here we take both a vertical and horizontal edge detector kernel, sum the output, and then run the alignment function on that. We see a massive improvement in emir. Moreover this made some improvements on train, as this image would have trouble on smaller pyramids prior to this adjustment.</p>
 
     <img src="./media/without_edge/emir_output.jpg" alt="Emir output without edge detection">
     <p>Now with edge-detection:</p>
