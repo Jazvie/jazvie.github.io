@@ -56,7 +56,7 @@
 
     <h2>Section 1: Small jpg Images</h2>
 
-    <p>These images are small enough for us to simply search through them one-by-one to find the best match.</p>
+    <p>These images are small enough for us to simply search through them one-by-one to find the best match. Here we made use of normalized cross-correlation as our measure of simmilarity. We simply translated the two layers for just about all the different possibilities.</p>
 
 
     <div class="image-container">
@@ -70,7 +70,7 @@
 
     <h2>Section 2: Large tif Images + Bonus few</h2>
 
-    <p>These images are far too big for us to look at all elements. Here we must use a pyramid in order to get results quickly. Here we label the shift as a tuple, where the first tuble represents the x and y shift of the r layer and the second one for the green layer. i.e shift = ((r_x,r_y), (g_x,g_y))</p>
+    <p>These images are far too big for us to look at all elements. Here we must use a pyramid in order to get results quickly. Here we label the shift as a tuple, where the first tuble represents the x and y shift of the r layer and the second one for the green layer. i.e shift = ((r_x,r_y), (g_x,g_y)). Like with the prior part, we used the normalized cross-correlation. This is our final outputs, which we will describe more of the optional details below.</p>
 
     <div class="image-container">
         <img src="./media/outputs/emir_output.jpg" alt="Emir output">
