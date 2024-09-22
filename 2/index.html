@@ -54,23 +54,44 @@
 
     <p>Hello, here is things.</p>
 
-    <h2>Section 1.2: </h2>
+    <h2>Section 1.1:</h2>
 
     <p>Here we first begin by taking the convolutions of the x and y difference filters. These are the magnitude outputs from taking the pointwise absolute value of the convolution output:</p>
     <p> D_x output magnitude:</p>
-    <img src="./media/fun_with_filters/Dx_prefilter.jpg" style="transform: scale(0.5);">
+    <img src="./media/fun_with_filters/Dx_prefilter.jpg" style="transform: scale(0.75);">
     <p>D_y output magnitude:</p>
-    <img src="./media/fun_with_filters/Dy_prefilter.jpg" style="transform: scale(0.5);">
+    <img src="./media/fun_with_filters/Dy_prefilter.jpg" style="transform: scale(0.75);">
 
     <p>We can now do some thresholding to remove some noise and get a clearer picture of the edges. Here we do this by applying thresholding such that elements below the 98.5th percentile of values are set to zero, and everything above is set to 1. This insures that only the most prominent edges are maintained.</p>
     <p> D_x thresholded output magnitude:</p>
-    <img src="./media/fun_with_filters/Dx.jpg" style="transform: scale(0.5);">
+    <img src="./media/fun_with_filters/Dx.jpg" style="transform: scale(0.75);">
     <p>D_y thresholded output magnitude:</p>
-    <img src="./media/fun_with_filters/Dy.jpg" style="transform: scale(0.5);">
+    <img src="./media/fun_with_filters/Dy.jpg" style="transform: scale(0.75);">
 
     <div class="pagebreak"> </div>
 
-    <p>Testing</p>
+    <h2>Section 1.2:</h2>
+    <p>
+        We see below there are two primary changes in this formulation. First is that we generally have less edges detected.
+        Note here that we used the 98th instead of the 98.5th percentile here and despite this, we actually get less noise in the grassy region.
+        The other major change is that on the edges we do preserve, the lines are thicker. This is simply a result of the gaussian filter blurring out the edges,
+        making them encompass a wider region. We are still able to capture them desipte having lower frequency by applying this binary filtering, which accounts for relative differences across images.
+    </p>
+
+    <p>Here we use a gaussian filter with k=3 and sigma=0 for cv2.getGaussianKernel.</p>
+
+    <p>Dx convolution magnitude output after applying gaussian filter:</p>
+    <img src="./media/fun_with_filters/Dx_gaussian_mag.jpg" style="transform: scale(0.75);">
+    <p>Dy convolution magnitude output after applying gaussian filter:</p>
+    <img src="./media/fun_with_filters/Dy_gaussian_mag.jpg" style="transform: scale(0.75);">
+    <p>Dx binary threshold via 98th percentile:</p>
+    <img src="./media/fun_with_filters/Dx_gaussian_thresh.jpg" style="transform: scale(0.75);">
+    <p>Dy binary threshold via 98th percentile:</p>
+    <img src="./media/fun_with_filters/Dy_gaussian_thresh.jpg" style="transform: scale(0.75);">
+
+
+
+    <div class="pagebreak"> </div>
 
     <p>Thank you</p>
 </body>
