@@ -58,15 +58,15 @@
 
     <p>Here we first begin by taking the convolutions of the x and y difference filters. These are the magnitude outputs from taking the pointwise absolute value of the convolution output:</p>
     <p> D_x output magnitude:</p>
-    <img src="./media/fun_with_filters/Dx_prefilter.jpg">
+    <img src="./media/fun_with_filters/Dx_prefilter.jpg" style="transform: scale(0.5);">
     <p>D_y output magnitude:</p>
-    <img src="./media/fun_with_filters/Dy_prefilter.jpg">
+    <img src="./media/fun_with_filters/Dy_prefilter.jpg" style="transform: scale(0.5);">
 
     <p>We can now do some thresholding to remove some noise and get a clearer picture of the edges. Here we do this by applying thresholding such that elements below the 98.5th percentile of values are set to zero, and everything above is set to 1. This insures that only the most prominent edges are maintained.</p>
     <p> D_x thresholded output magnitude:</p>
-    <img src="./media/fun_with_filters/Dx.jpg">
+    <img src="./media/fun_with_filters/Dx.jpg" style="transform: scale(0.5);">
     <p>D_y thresholded output magnitude:</p>
-    <img src="./media/fun_with_filters/Dy.jpg">
+    <img src="./media/fun_with_filters/Dy.jpg" style="transform: scale(0.5);">
 
     <div class="pagebreak"> </div>
 
