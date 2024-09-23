@@ -230,6 +230,23 @@
     Combining these two we get:
     <img src="./media/hybrid/al_eis.png" style="transform: scale(1.0);">
 
+    <p>Example three: failure case</p>
+    <div class="image-container">
+        <img src="./media/hybrid/base.png" style="transform: scale(0.5);">
+        <img src="./media/hybrid/bowl.png" style="transform: scale(0.5);">
+    </div>
+
+    Combining these two we get:
+    <img src="./media/hybrid/base_bowl.png" style="transform: scale(1.0);">
+
+    <p>Although these two layer on top of each other, I consider this to be a failure.
+         The reason why is that the two images are too disjoint in their content, such that the output comes to just resemble a transparent image placed on another,
+         rather than having frequencies mask over each other. Because the content is so disjoint, the two have no real important features to mask on each other. The bowling
+         ball holes are too noticable from close distances because of this.
+    </p>
+
+    <p>Let us do some fourier analysis on the Eisenhower and Al Gore images:</p>
+
     <p>Thank you</p>
 </body>
 </html>
