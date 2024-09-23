@@ -73,7 +73,7 @@
     <h2>Section 1.2:</h2>
     <p>
         We see below there are two primary changes in this formulation. First is that we generally have less edges detected.
-        Note here that we used the 98th instead of the 98.5th percentile here and despite this, we actually get less noise in the grassy region.
+        Note here that we used the 98th instead of the 98.5th percentile here and despite this, we actually get less noise in the grassy region. This is most noticable if we look at what the Dy output looks like before we threshold in both cases. We see that if we do not apply the gaussian filter, the very bottom on the image is filled with a lot of very fine details that we do not care about.
         The other major change is that on the edges we do preserve, the lines are thicker. This is simply a result of the gaussian filter blurring out the edges,
         making them encompass a wider region. We are still able to capture them desipte having lower frequency by applying this binary filtering, which accounts for relative differences across images.
     </p>
@@ -89,10 +89,30 @@
     <p>Dy binary threshold via 98th percentile:</p>
     <img src="./media/fun_with_filters/Dy_gaussian_thresh.jpg" style="transform: scale(0.75);">
 
+    <p>Now to combine this in to a single convolution. We can simply convolve the gaussian and the edge filters together, then perform
+        the convolution as before:
+    </p>
 
+    <p>Output of combined Dx filter:</p>
+    <img src="./media/fun_with_filters/x_combined.jpg" style="transform: scale(0.75);">
+    <p>Output of combined Dy filter:</p>
+    <img src="./media/fun_with_filters/y_combined.jpg" style="transform: scale(0.75);">
 
+    <p>Visually, it is clear that this is the same output, but we can further vefity by taking the difference 
+        between this image and the old one where we did two setps:
+    </p>
+
+    <p>magnitude of two step Dx filter vs one step combined Dx filter:</p>
+    <img src="./media/fun_with_filters/x_combined.jpg" style="transform: scale(0.75);">
+    <p>magnitude of two step Dy filter vs one step combined Dy filter:</p>
+    <img src="./media/fun_with_filtersyx_combined.jpg" style="transform: scale(0.75);">
+
+    <p>Note in practice, it is likely that these will not always match perfectly due to floating point and machine errors as we are computing in a different order.
+        Regardless, to the human eye, there should generally be no difference.
+    </p>
     <div class="pagebreak"> </div>
 
+    <h2>Section 2.1:</h2>
     <p>Thank you</p>
 </body>
 </html>
