@@ -15,7 +15,7 @@
             max-width: 100%; /* Ensures images never exceed their container */
             height: auto;
             display: block;
-            margin: 5px auto;
+            margin: 20px auto;
         }
 
         .image-container {
@@ -50,112 +50,116 @@
     </style>
 </head>
 <body>
-    <h1>Project 2</h1>
+    <h1>Project 1</h1>
 
     <p>Hello, here is things.</p>
 
-    <h2>Section 1.1:</h2>
+    <h2>Section 1: Small jpg Images</h2>
 
-    <p>Here we first begin by taking the convolutions of the x and y difference filters. These are the magnitude outputs from taking the pointwise absolute value of the convolution output:</p>
-    <p> D_x output magnitude:</p>
-    <img src="./media/fun_with_filters/Dx_prefilter.jpg" style="transform: scale(0.75);">
-    <p>D_y output magnitude:</p>
-    <img src="./media/fun_with_filters/Dy_prefilter.jpg" style="transform: scale(0.75);">
-
-    <p>We can now do some thresholding to remove some noise and get a clearer picture of the edges. Here we do this by applying thresholding such that elements below the 98.5th percentile of values are set to zero, and everything above is set to 1. This insures that only the most prominent edges are maintained.</p>
-    <p> D_x thresholded output magnitude:</p>
-    <img src="./media/fun_with_filters/Dx.jpg" style="transform: scale(0.75);">
-    <p>D_y thresholded output magnitude:</p>
-    <img src="./media/fun_with_filters/Dy.jpg" style="transform: scale(0.75);">
-
-    <div class="pagebreak"> </div>
-
-    <h2>Section 1.2:</h2>
-    <p>
-        We see below there are two primary changes in this formulation. First is that we generally have less edges detected.
-        Note here that we used the 98th instead of the 98.5th percentile here and despite this, we actually get less noise in the grassy region. This is most noticable if we look at what the Dy output looks like before we threshold in both cases. We see that if we do not apply the gaussian filter, the very bottom on the image is filled with a lot of very fine details that we do not care about.
-        The other major change is that on the edges we do preserve, the lines are thicker. This is simply a result of the gaussian filter blurring out the edges,
-        making them encompass a wider region. We are still able to capture them desipte having lower frequency by applying this binary filtering, which accounts for relative differences across images.
-    </p>
-
-    <p>Here we use a gaussian filter with k=3 and sigma=0 for cv2.getGaussianKernel.</p>
-
-    <p>Dx convolution magnitude output after applying gaussian filter:</p>
-    <img src="./media/fun_with_filters/Dx_gaussian_mag.jpg" style="transform: scale(0.75);">
-    <p>Dy convolution magnitude output after applying gaussian filter:</p>
-    <img src="./media/fun_with_filters/Dy_gaussian_mag.jpg" style="transform: scale(0.75);">
-    <p>Dx binary threshold via 98th percentile:</p>
-    <img src="./media/fun_with_filters/Dx_gaussian_thresh.jpg" style="transform: scale(0.75);">
-    <p>Dy binary threshold via 98th percentile:</p>
-    <img src="./media/fun_with_filters/Dy_gaussian_thresh.jpg" style="transform: scale(0.75);">
-
-    <p>Now to combine this in to a single convolution. We can simply convolve the gaussian and the edge filters together, then perform
-        the convolution as before:
-    </p>
-
-    <p>Output of combined Dx filter:</p>
-    <img src="./media/fun_with_filters/x_combined.jpg" style="transform: scale(0.75);">
-    <p>Output of combined Dy filter:</p>
-    <img src="./media/fun_with_filters/y_combined.jpg" style="transform: scale(0.75);">
-
-    <p>Visually, it is clear that this is the same output, but we can further verify by taking the difference 
-        between this image and the old one where we did two setps:
-    </p>
-
-    <p>magnitude of two step Dx filter minus one step combined Dx filter:</p>
-    <img src="./media/fun_with_filters/diff_x.jpg" style="transform: scale(0.75);">
-    <p>magnitude of two step Dy filter minus one step combined Dy filter:</p>
-    <img src="./media/fun_with_filters/diff_y.jpg" style="transform: scale(0.75);">
-
-    <p>Note in practice, it is likely that these will not always match perfectly due to floating point and machine errors as we are computing in a different order.
-        Regardless, to the human eye, there should generally be no difference.
-    </p>
-    <div class="pagebreak"> </div>
-
-    <h2>Section 2.1:</h2>
-    <p>Here we obetain the unsharp mask filter via the formula: (1 + alpha)*id - alpha * gaussian_filer
-         where alpha is a scalar value of our choice, id is the identity filter.
-    </p>
-
-    <p>Here is an application of the filter onto taj.jpg. Here we use alpha=3 to emphasize the effect of the filter.</p>
-
-    <p>Image before unsharp filter application:</p>
-    <img src="./media/fun_with_frequencies/taj.jpg" style="transform: scale(1.1);">
-    <p>Image after unsharp filter application with alpha=3:</p>
-    <img src="./media/fun_with_frequencies/taj_sharp.jpg" style="transform: scale(1.1);">
-
-    <p>Once again we are going to apply the filter with an alpha=5, we see how the image in general 
-        becomes more jagged and grainy. Take note of the sand and rocks at the bottom, with fine patterns, that are more emphasized when we sharpen.
-    </p>
-
-    <p>Image before unsharp filter application:</p>
-    <img src="./media/fun_with_frequencies/frut.jpg" style="transform: scale(1.0);">
-    <p>Image after unsharp filter application with alpha=5:</p>
-    <img src="./media/fun_with_frequencies/frut_sharp.jpg" style="transform: scale(1.0);">
-
-    <p>Now for fun let us try a needlessly high alpha value to see what happens. If we take some value like alpha=10, we can start to run into issues with some values blowing up in value.
-         Here we see the image becomes way to grainy as we remove too many low frequencies:
-    </p>
-
-    <p>Image before unsharp filter application:</p>
-    <img src="./media/fun_with_frequencies/moo_deng.jpeg" style="transform: scale(1.0);">
-    <p>Image after unsharp filter application with alpha=10:</p>
-    <img src="./media/fun_with_frequencies/moo_sharp.jpg" style="transform: scale(1.0);">
-
-    <p>Now let us take a sharp image, downsample, then resharp.</p>
-
-    <p>A rather sharp Moo Deng:</p>
-    <img src="./media/fun_with_frequencies/moo_2.jpg" style="transform: scale(1.0);">
-    <p>A gaussian Moo Deng:</p>
-    <img src="./media/fun_with_frequencies/moo_2blur.jpg" style="transform: scale(1.0);">
-    <p>A resharpened  Moo Deng using alpha=5. We do not recover the original as blurring will lose information. Regardless,
-         we see that we can recover some subtle details such as the soap bubbles on the nose, and the light reflections on the back. This resembles the original image
-          more than the blurred one because of this.</p>
-    <img src="./media/fun_with_frequencies/moo_2sharp.jpg" style="transform: scale(1.0);">
+    <p>These images are small enough for us to simply search through them one-by-one to find the best match. Here we made use of normalized cross-correlation as our measure of simmilarity. We simply translated the two layers for just about all the different possibilities.</p>
 
 
+    <div class="image-container">
+        <img src="./media/outputs/cathedral_output.jpg" alt="Cathedral output">
+        <p>shift = ((12, 3), (5, 2))</p>
+        <img src="./media/outputs/tobolsk_output.jpg" alt="Tobolsk output">
+        <p>shift = ((7, 3), (3, 3))</p>
+        <img src="./media/outputs/monastery_output.jpg" alt="Monastery output">
+        <p>shift = ((3, 2), (-3, 2))</p>
+    </div>
 
+    <h2>Section 2: Large tif Images + Bonus few</h2>
 
+    <p>These images are far too big for us to look at all elements. Here we must use a pyramid in order to get results quickly. Here we label the shift as a tuple, where the first tuble represents the x and y shift of the r layer and the second one for the green layer. i.e shift = ((r_x,r_y), (g_x,g_y)). Like with the prior part, we used the normalized cross-correlation. This is our final outputs, which we will describe more of the optional details below.</p>
+
+    <div class="image-container">
+        <img src="./media/outputs/emir_output.jpg" alt="Emir output">
+        <p>shift = ((106, 42), (48, 24))</p>
+        <img src="./media/outputs/church_output.jpg" alt="Church output">
+        <p>shift = ((58, -4), (25, 4))</p>
+        <img src="./media/outputs/icon_output.jpg" alt="Icon output">
+        <p>shift = ((89, 23), (40, 17))</p>
+        <img src="./media/outputs/harvesters_output.jpg" alt="Harvesters output">
+        <p>shift = ((123, 14), (60, 18))</p>
+        <div style="page-break-before:always">&nbsp;</div> 
+
+        <img src="./media/outputs/lady_output.jpg" alt="Lady output">
+        <p>shift = ((116, 13), (54, 8))</p>
+        <img src="./media/outputs/melons_output.jpg" alt="Melons output">
+        <p>shift = ((179, 13), (81, 9))</p>
+        <img src="./media/outputs/onion_church_output.jpg" alt="Onion church output">
+        <p>shift = ((108, 37), (51, 27))</p>
+        <img src="./media/outputs/sculpture_output.jpg" alt="Sculpture output">
+        <p>shift = ((140, -27), (33, -11))</p>
+        <div style="page-break-before:always">&nbsp;</div> 
+
+        <img src="./media/outputs/self_portrait_output.jpg" alt="Self portrait output">
+        <p>shift = ((181, 33), (73, 33))</p>
+        <img src="./media/outputs/three_generations_output.jpg" alt="Three generations output">
+        <p>shift = ((111, 10), (52, 13))</p>
+        <img src="./media/outputs/train_output.jpg" alt="Train output">
+        <p>shift = ((86, 33), (43, 7))</p>
+        <div style="page-break-before:always">&nbsp;</div> 
+
+        <img src="./media/outputs/mosque_output.jpg" alt="Mosque output">
+        <p>shift = ((67, 16), (23, 16))</p>
+        <img src="./media/outputs/trees.jpg" alt="Trees output">
+        <p>shift = ((93, 20), (34, 21))</p>
+        <img src="./media/outputs/tower_output.jpg" alt="Tower output">
+        <p>shift = ((122, -6), (58, 5))</p>
+    </div>
+
+    <h2>Section 3: Cropping</h2>
+
+    <p>As a part of the extra bells and whistles, we can add cropping. For cropping, the mindset was that we would rather remove less if it means preserving 'important' information. For example, the bars are not always straight, and therefore there may be parts of the image that may be lost if we are to cut further down. This is why some but not all of the colored bars are removed. This implementation is based off of the simple observation that borders are mostly just black lines, or deviate little from black lines. Therefore, we can place a threshold on the variance of the pixel values until it reaches a certain point. Although it is not a problem for these images, we also kept a maximum possible area of cutoff as to prevent searching too far and either cutting too much or spending needless time doing computations.</p>
+
+    <img src="./media/crops/cathedral_output.jpg" alt="Cathedral output before cropping">
+    <p>With cropping:</p>
+    <img src="./media/with_crops/cathedral_output.jpg" alt="Cathedral output after cropping">
+
+    <img src="./media/crops/church_output.jpg" alt="Church output before cropping">
+    <p>With cropping:</p>
+    <img src="./media/with_crops/church_output.jpg" alt="Church output after cropping">
+
+    <p>In these examples, we can see some of the black and white borders as well as some of the colored borders being chopped off. Our approach is relatively conservative in terms of the method and threshold.</p>
+
+    <h2>Section 4: Edge-Based Alignment</h2>
+
+    <p>This section concerns only one image in particular, that being of emir.tif, as it is the only one notably impacted by this change, besides maybe the train. In order to explain why this is the case, we must explain the original implementation. Before, we made use of normalized-cross-correlation, which worked as a suitable measure as it managed relative differences better than other ones like l2 or l2 distance. This however caused a problem because the man's outfit was very blue in this picture, and thus there is a huge area in the slide with a mass of large values for the blue layer, and none for the red. Therefore the program would be way off, as it would try to align his outfit with the door or his beard, which have more red and green. To fix this problem, we can make use of an edge detection kernel and a convolution. Here we take both a vertical and horizontal edge detector kernel, sum the output, and then run the alignment function on that. We see a massive improvement in emir. Moreover this made some improvements on train, as this image would have trouble on smaller pyramids prior to this adjustment.</p>
+
+    <img src="./media/without_edge/emir_output.jpg" alt="Emir output without edge detection">
+    <p>Now with edge-detection:</p>
+    <img src="./media/with_edge/emir_output.jpg" alt="Emir output with edge detection">
+
+    <h2>Section 5: Automatic Contrasting</h2>
+
+    <p>This one is a purely aesthetic change, and so viewer is the judge as to if it is preferable or not. Here we convert the image to YCrCb and use the value of Y as our measure of contrast. We then linearly scale all values accordingly and then convert back. We see overall this has the effect of making things darker and moodier.</p>
+
+    <img src="./media/with_lum/melons_output.jpg" alt="Melons output with contrasting">
+    <p>Without Contrasting:</p>
+    <img src="./media/with_edge/melons_output.jpg" alt="Melons output without contrasting">
+
+    <img src="./media/with_lum/emir_output.jpg" alt="Emir output with contrasting">
+    <p>Without Contrasting:</p>
+    <img src="./media/with_edge/emir_output.jpg" alt="Emir output without contrasting">
+
+    <img src="./media/with_lum/harvesters_output.jpg" alt="Harvesters output with contrasting">
+    <p>Without Contrasting:</p>
+    <img src="./media/with_edge/harvesters_output.jpg" alt="Harvesters output without contrasting">
+
+    <img src="./media/with_lum/icon_output.jpg" alt="Icon output with contrasting">
+    <p>Without Contrasting:</p>
+    <img src="./media/with_edge/icon_output.jpg" alt="Icon output without contrasting">
+
+    <img src="./media/with_lum/lady_output.jpg" alt="Lady output with contrasting">
+    <p>Without Contrasting:</p>
+    <img src="./media/with_edge/lady_output.jpg" alt="Lady output without contrasting">
+
+    <img src="./media/with_lum/train_output.jpg" alt="Train output with contrasting">
+    <p>Without Contrasting:</p>
+    <img src="./media/with_edge/train_output.jpg" alt="Train output without contrasting">
+
+    <hr>
 
     <p>Thank you</p>
 </body>
