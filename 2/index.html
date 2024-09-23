@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 1</title>
-    <style>
-        body {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    }
-        img {
-            max-width: 100%; /* Ensures images never exceed their container */
-            height: auto;
-            display: block;
-            margin: 5px auto;
-        }
-
-        .image-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .image-container img {
-            flex: 0 1 calc(25% - 10px);
-            margin: 5px;
-            object-fit: cover; /* Maintains aspect ratio while filling the space */
-        }
-
-        @media (max-width: 800px) {
-            .image-container img {
-                flex: 0 1 calc(33.333% - 10px);
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Project 1</title>
+        <style>
+            body {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                box-sizing: border-box;
             }
-        }
-
-        @media (max-width: 600px) {
-            .image-container img {
-                flex: 0 1 calc(50% - 10px);
+    
+            img {
+                max-width: 100%;
+                height: auto; 
+                display: block;
+                margin: 5px auto;
             }
-        }
-
-        @media (max-width: 400px) {
-            .image-container img {
-                flex: 0 1 100%;
+    
+            .image-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
             }
-        }
-    </style>
-</head>
+    
+            .image-container img {
+                flex: 1 1 calc(25% - 10px);
+                margin: 5px;
+            }
+    
+            @media (max-width: 800px) {
+                .image-container img {
+                    flex: 1 1 calc(33.333% - 10px);
+                }
+            }
+    
+            @media (max-width: 600px) {
+                .image-container img {
+                    flex: 1 1 calc(50% - 10px);
+                }
+            }
+    
+            @media (max-width: 400px) {
+                .image-container img {
+                    flex: 1 1 100%;
+                }
+            }
+        </style>
+    </head>
 <body>
     <h1>Project 2</h1>
 
@@ -121,8 +121,7 @@
 
     
 
-    <div class="image-container">
-        <p>Image before unsharp filter application:</p>
+    <p>Image before unsharp filter application:</p>
     <img src="./media/fun_with_frequencies/taj.jpg" style="transform: scale(0.75);">
     <p>alpha=1:</p>
     <img src="./media/fun_with_frequencies/taj_sharp1.jpg" style="transform: scale(0.75);">
@@ -132,15 +131,16 @@
     <img src="./media/fun_with_frequencies/taj_sharp3.jpg" style="transform: scale(0.75);">
     <p>alpha=4:</p>
     <img src="./media/fun_with_frequencies/taj_sharp4.jpg" style="transform: scale(0.75);">
-    <p>alpha=5:</p>
+    <p>alpha=5 vs original (alpha=5 on left):</p>
+    <div class="image-container">
     <img src="./media/fun_with_frequencies/taj_sharp5.jpg" style="transform: scale(0.75);">
+    <img src="./media/fun_with_frequencies/taj.jpg" style="transform: scale(0.75);">
     </div>
-
     <p>Once again we are going to apply the filter. We see how the image in general 
         becomes more jagged and grainy. Take note of the sand and rocks at the bottom, with fine patterns, that are more emphasized when we sharpen.
     </p>
 
-    <div class="image-container">
+    
     <p>Image before unsharp filter application:</p>
     <img src="./media/fun_with_frequencies/frut.jpg" style="transform: scale(0.75);">
     <p>alpha=1:</p>
@@ -151,28 +151,33 @@
     <img src="./media/fun_with_frequencies/frut_sharp3.jpg" style="transform: scale(0.75);">
     <p>alpha=4:</p>
     <img src="./media/fun_with_frequencies/frut_sharp4.jpg" style="transform: scale(0.75);">
-    <p>alpha=5:</p>
+
+    <p>alpha=5 vs original (alpha=5 on left):</p>
+    <div class="image-container">
     <img src="./media/fun_with_frequencies/frut_sharp5.jpg" style="transform: scale(0.75);">
+    <img src="./media/fun_with_frequencies/frut.jpg" style="transform: scale(0.75);">
     </div>
 
     <p>Now for fun let us try a needlessly high alpha value to see what happens. If we take some value like alpha=10, we can start to run into issues with some values blowing up in value.
          Here we see the image becomes way to grainy as we remove too many low frequencies:
     </p>
 
-    <div class="image-container">
-        <p>Image before unsharp filter application:</p>
-        <img src="./media/fun_with_frequencies/moo_deng.jpeg" style="transform: scale(0.75);">
-        <p>alpha=2:</p>
-        <img src="./media/fun_with_frequencies/moo_sharp2.jpg" style="transform: scale(0.75);">
-        <p>alpha=4:</p>
-        <img src="./media/fun_with_frequencies/moo_sharp4.jpg" style="transform: scale(0.75);">
-        <p>alpha=6:</p>
-        <img src="./media/fun_with_frequencies/moo_sharp6.jpg" style="transform: scale(0.75);">
-        <p>alpha=8:</p>
-        <img src="./media/fun_with_frequencies/moo_sharp8.jpg" style="transform: scale(0.75);">
-        <p>alpha=10:</p>
-        <img src="./media/fun_with_frequencies/moo_sharp10.jpg" style="transform: scale(0.75);">
-        </div>
+    
+    <p>Image before unsharp filter application:</p>
+    <img src="./media/fun_with_frequencies/moo_deng.jpeg" style="transform: scale(0.75);">
+    <p>alpha=2:</p>
+    <img src="./media/fun_with_frequencies/moo_sharp2.jpg" style="transform: scale(0.75);">
+    <p>alpha=4:</p>
+    <img src="./media/fun_with_frequencies/moo_sharp4.jpg" style="transform: scale(0.75);">
+    <p>alpha=6:</p>
+    <img src="./media/fun_with_frequencies/moo_sharp6.jpg" style="transform: scale(0.75);">
+    <p>alpha=8:</p>
+    <img src="./media/fun_with_frequencies/moo_sharp8.jpg" style="transform: scale(0.75);">
+    <p>alpha=10 vs original (alpha=10 on left):</p>
+    <div class="image-container"></div>
+    <img src="./media/fun_with_frequencies/moo_sharp10.jpg" style="transform: scale(0.75);">
+    <img src="./media/fun_with_frequencies/moo_deng.jpeg" style="transform: scale(0.75);">
+    </div>
 
     <p>Now let us take a sharp image, downsample, then resharp.</p>
 
