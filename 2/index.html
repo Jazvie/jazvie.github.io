@@ -33,18 +33,21 @@
             @media (max-width: 800px) {
                 .image-container img {
                     flex: 1 1 calc(33.333% - 10px);
+                    max-width: 150px;
                 }
             }
     
             @media (max-width: 600px) {
                 .image-container img {
                     flex: 1 1 calc(50% - 10px);
+                    max-width: 150px;
                 }
             }
     
             @media (max-width: 400px) {
                 .image-container img {
                     flex: 1 1 100%;
+                    max-width: 150px;
                 }
             }
         </style>
@@ -150,23 +153,23 @@
 
     
     <p>Image before unsharp filter application:</p>
-    <img src="./media/fun_with_frequencies/frut.jpg" style="transform: scale(0.35);">
+    <img src="./media/fun_with_frequencies/frut.jpg" style="transform: scale(0.75);">
     <p>alpha=1, 2:</p>
     <div class="image-container">
-    <img src="./media/fun_with_frequencies/frut_sharp1.jpg" style="transform: scale(0.35);">
-    <img src="./media/fun_with_frequencies/frut_sharp2.jpg" style="transform: scale(0.35);">
+    <img src="./media/fun_with_frequencies/frut_sharp1.jpg" style="transform: scale(0.75);">
+    <img src="./media/fun_with_frequencies/frut_sharp2.jpg" style="transform: scale(0.75);">
     </div>
     <p>alpha=3, 4:</p>
    
     <div class="image-container">
-    <img src="./media/fun_with_frequencies/frut_sharp3.jpg" style="transform: scale(0.35);">
-    <img src="./media/fun_with_frequencies/frut_sharp4.jpg" style="transform: scale(0.35);">
+    <img src="./media/fun_with_frequencies/frut_sharp3.jpg" style="transform: scale(0.75);">
+    <img src="./media/fun_with_frequencies/frut_sharp4.jpg" style="transform: scale(0.75);">
     </div>
 
     <p>alpha=5 vs original (alpha=5 on left):</p>
     <div class="image-container">
-    <img src="./media/fun_with_frequencies/frut_sharp5.jpg" style="transform: scale(0.35);">
-    <img src="./media/fun_with_frequencies/frut.jpg" style="transform: scale(0.35);">
+    <img src="./media/fun_with_frequencies/frut_sharp5.jpg" style="transform: scale(0.75);">
+    <img src="./media/fun_with_frequencies/frut.jpg" style="transform: scale(0.75);">
     </div>
 
     <p>Now for fun let us try a needlessly high alpha value to see what happens. If we take some value like alpha=10, we can start to run into issues with some values blowing up in value.
@@ -179,14 +182,14 @@
 
     <p>alpha=2, 4:</p>
     <div class="image-container">
-    <img src="./media/fun_with_frequencies/moo_sharp2.jpg" style="transform: scale(0.35);">
-    <img src="./media/fun_with_frequencies/moo_sharp4.jpg" style="transform: scale(0.35);">
+    <img src="./media/fun_with_frequencies/moo_sharp2.jpg" style="transform: scale(0.5);">
+    <img src="./media/fun_with_frequencies/moo_sharp4.jpg" style="transform: scale(0.5);">
     </div>
     <p>alpha=6, 8:</p>
    
     <div class="image-container">
-    <img src="./media/fun_with_frequencies/moo_sharp6.jpg" style="transform: scale(0.35);">
-    <img src="./media/fun_with_frequencies/moo_sharp8.jpg" style="transform: scale(0.35);">
+    <img src="./media/fun_with_frequencies/moo_sharp6.jpg" style="transform: scale(0.5);">
+    <img src="./media/fun_with_frequencies/moo_sharp8.jpg" style="transform: scale(0.5);">
     </div>
 
     
@@ -207,8 +210,8 @@
           more than the blurred one because of this.</p>
     <img src="./media/fun_with_frequencies/moo_2sharp.jpg" style="transform: scale(1.0);">
 
-
-
+    <h2>Section 2.2:</h2>
+    Here we can add the low and high frequencies to get our hybrid images:
 
 
     <p>Thank you</p>
