@@ -59,7 +59,9 @@
 
     <h2>Section 1.1:</h2>
 
-    <p>Here we first begin by taking the convolutions of the x and y difference filters. These are the magnitude outputs from taking the pointwise absolute value of the convolution output:</p>
+    <p>Here we first begin by taking the convolutions of the x and y difference filters. These are the magnitude outputs from taking the pointwise absolute value of the convolution output.
+        We can do this with the convolve2d function. Intuitively, this functions like an edge detector, as it amplifies regions where two relative pixels differ:
+    </p>
     <p> D_x output magnitude:</p>
     <img src="./media/fun_with_filters/Dx_prefilter.jpg" style="transform: scale(0.75);">
     <p>D_y output magnitude:</p>
