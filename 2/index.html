@@ -294,5 +294,20 @@
     <img src="./media/stacks/sun_prior.png" style="transform: scale(1.0);">
     <p>Output after blending. We see this adds a transition and also adds some warmth to the inner circle.</p>
     <img src="./media/stacks/sun_dude.png" style="transform: scale(1.0);">
+
+    <p>Now let us draw our own mask in paint. Here we want a mask to make our friend bald:</p>
+    <img src="./media/stacks/hair_mask.png" style="transform: scale(1.0);">
+    <p>And we apply this to the following images:</p>
+    <div class="image-container">
+    <img src="./media/stacks/hair_fixed2.png" style="transform: scale(1.0);">
+    <img src="./media/stacks/bald_fixed2.png" style="transform: scale(1.0);">
+    </div>
+    <p>With a naive single layer overlap we get the following image. We can see reall rough gradients on the face and the background</p>
+    <img src="./media/stacks/no_gradient_bald.png" style="transform: scale(1.0);">
+    <p>And now if we do multiresulution blending, we see that the skin blends in better, and the background blaends perfectly.
+         We can't expect the face blending to be perfect here, because the two faces have very different textures, although this is still much better than before.
+    </p>
+    <img src="./media/stacks/balded.png" style="transform: scale(1.0);">
+
 </body>
 </html>
