@@ -148,7 +148,7 @@
         <img src="./media/2.jpg" style="transform: scale(1.0);">
         <img src="./media/2_tomean.jpg" style="transform: scale(1.0);">
     </div>
-    <p>Above we see the nose being stretched a little bit, as well as the smile having more curvature.</p>
+    <p>Above we see the nose being stretched a little bit, as well as the smile having more curvature. The eyebros also have more thickness.</p>
 
     <div class="image-container">
         <img src="./media/6.jpg" style="transform: scale(1.0);">
@@ -170,7 +170,33 @@
         We see overall that because all of the original images are aligned fairly well, we don't see too much distorting overall.
     </p>
 
+    <p>Now let's see what happens when we morph Obama into this shape, and what happens when we morph the mean face into Obama's geometry:</p>
 
+    <div class="image-container">
+        <img src="./media/obama_to_mean.jpg" style="transform: scale(1.0);">
+        <img src="./media/mean_to_obama.jpg" style="transform: scale(1.0);">
+    </div>
 
+    <p>
+        We see overall that the mean to obama morph actually works decently. It doesn't look perfect, but it somewhat resembles a real face.
+        On the other hand when we morph Obama's geometry we get some strange patterns around the eyes, ears, and mouth. This likely stems from how
+        Obama's geometry and the dataset, as well as the fact that all of faces in the dataset are aligned with eachother.
+    </p>
+
+    <h2>Section 5:</h2>
+
+    <p>Now let us extrapolate from the mean. We can do this by morphing with a warp value outside of the stanard range of zero to one.
+        We note that because the mean is characterized by its smile, we can use positive values greater than one to produce a greather smile, and
+        negative values to get something like a frown. Here let's try this for different alpha values:
+
+    </p>
+    <p>alpha=-5 on left, alpha=5 on right:</p>
+    <div class="image-container">
+        <img src="./media/obama_extrapolate_negativeonepointfive.jpg" style="transform: scale(1.0);">
+        <img src="./media/obama_extrapolate_1point5.jpg" style="transform: scale(1.0);">
+    </div>
+    <p>We see here that the results are as expected. negative values give us a frown, and high positive values give us a bigger smile.</p>
+
+    <h2>Bells & Whistles:</h2>
 </body>
 </html>
