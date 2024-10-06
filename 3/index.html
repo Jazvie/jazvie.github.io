@@ -199,7 +199,7 @@
 
     <h2>Bells & Whistles:</h2>
 
-    <h2>Changing Gender:</h2>
+    <h3>Changing Gender:</h3>
     <p>We had already computed the averages for the female faces in the prior part, so it is simple to move on here and morph our face to female.
         The first thing we should consider is how much we morph the shape, and how much we morph the pixel values. Based on what we saw from part 4, it
         is best we not morph the shape all the way. As for the dissolving, we want the face to look like obama's face still, so we want to keep this closer to no dissolving.
@@ -210,5 +210,19 @@
         GET SOME MORE FOR DIFFERENT VALUES HERE
     </p>
     <img src="./media/obamagirl2.jpg" style="transform: scale(1.0);">
+
+
+    <h3>PCA based alignment (or why having a good dataset is important):</h3>
+
+    <p>Let's say that we are lazy and we wish to not bother with all this warping and transformations, that we instead turn to 
+        the trusted method seen in every berkeley ML course: PCA. Here, rather than doing the warping ourselves, we can let the computer get all the singular vectors and then project onto our new basis.
+        To do this we will use our dataset to compute our basis. Let's take a look at the first few eigenfaces:
+    </p>
+
+    <div class="image-container">
+        <img src="./media/pca_1.png" style="transform: scale(1.0);">
+        <img src="./media/pca2.png" style="transform: scale(1.0);">
+        <img src="./media/pca3.png" style="transform: scale(1.0);">
+    </div>
 </body>
 </html>
