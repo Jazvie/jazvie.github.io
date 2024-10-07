@@ -74,8 +74,13 @@
         of each point in the correspondances arrays we have. Once We have this, we can run a triangulation.
         Because of this midpoint trinagulation, we are less likely to have the triangulation overly skewed to one of the images.
         Altough, the faces are origented in a similar way, so this would likely not be a notable problem in this case.
-        Here we us a simple delaunay triangulation.
+        Here we us a simple delaunay triangulation. Here are the images with the midpoint triangulation overlayed:
     </p>
+
+    <div class="image-container">
+        <img src="./media/tri_mean_joe.png" style="transform: scale(1.0);">
+        <img src="./media/tri_mean_obama.png" style="transform: scale(1.0);">
+    </div>
 
     <p>
         Now that we have all the triangles, we can do some inverse-warping. We do this by first defining a linear transformation from the midpoint trianlgle, back to the two triangules in the other images.
