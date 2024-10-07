@@ -101,7 +101,7 @@
         dissolve_frac. Here once we interpolate, we take our output as the convex combination of our two transformed triangles. Here, if we choose a dissolve_frac of 1 or 0, we can save some computing time
         by not calculating all the interpolations and pixel values from the image we aren't taking pixel values from. Now that we have this function, we can choose a step value
         and apply the morphing function to the images using different values with stepsize 1/steps. Here we use the same warp and dissolve values for each call, so we don't need to calculate the warps for the edge
-        cases as they should return the original image if transformed.
+        cases as they should return the original image if transformed. To see this you need to look on the website, not the PDF:
     </p>
     <img src="./media/obama2biden_twenty3.gif" style="transform: scale(1.0);">
 
