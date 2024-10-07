@@ -206,10 +206,10 @@
     </p>
 
     <p>Here we can try with a dissolve of .9 meaning we keep 90 of the Obama image, and we warp at .5:
-
-        GET SOME MORE FOR DIFFERENT VALUES HERE
     </p>
     <img src="./media/obamagirl2.jpg" style="transform: scale(1.0);">
+
+    <p>We see this isn't actually half bad.</p>
 
 
     <h3>Classmate morphing music video:</h3>
@@ -240,9 +240,26 @@
         Let's first see what happens when we remove some singular values:
     </p>
 
-    <p>On the left we have  INSERRRTT THINGS HERE WE NEED MORE VALUES</p>
+    <p>Original face:</p>
 
-    <p>Now let's see what happens when we project obama on this basis: GET MORE SINGULAR VALUES</p>
+    <img src="./media/non_eigenf.png" style="transform: scale(1.0);">
 
+    <p>On the left we have a face not included in the pca basis projected with the top 15 singular values, on the right we use about 100 singular values:</p>
+
+    <div class="image-container">
+        <img src="./media/pca_15.png" style="transform: scale(1.0);">
+        <img src="./media/eigen_f.png" style="transform: scale(1.0);">
+    </div>
+
+    <p>As expected, the basis with more singular balues performs better, with the 15 singular value basis struggling to capture more subtle details. Now let's try it with Obama. On the left we have 15 singular values and on the right we have 100:</p>
+
+    <div class="image-container">
+        <img src="./media/obamapca_15.png" style="transform: scale(1.0);">
+        <img src="./media/obamapca_full.png" style="transform: scale(1.0);">
+    </div>
+
+    <p>We have a serious problem here. These faces don't resemble obama at all. This likely is because two reasons. First, the image may not be well aligned spacially, given that we are aligning along pixel values rather than using corespondances. Second, the dataset cannot account for differences in facial features
+        due to the rather small size of the dataset overall, and the lack of facial diversity within the iamges we do have. Therefore, if we want to improve upon this method, finding a larger and more comprehensive dataset may be a good starting point.
+    </p>
 </body>
 </html>
